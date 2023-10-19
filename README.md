@@ -15,7 +15,9 @@ No banco de dados MongoDB, cada data notícia estará estruturada assim:
 ```console
 {
     "data":"19/10/2023",
-    "titulo":"Bahia vence o Inter na Fonte Nova e conquista 2º triunfo seguido na Série A","link":"https://www.ecbahia.com/brasileiro/bahia-vence-o-inter-na-fonte-nova-e-conquista-2-triunfo-seguido-na-serie-a","chamada":"Biel marcou o único gol tricolor no jogo",
+    "titulo":"Bahia vence o Inter na Fonte Nova e conquista 2º triunfo seguido na Série A",
+    "link":"https://www.ecbahia.com/brasileiro/bahia-vence-o-inter-na-fonte-nova-e-conquista-2-triunfo-seguido-na-serie-a",
+    "chamada":"Biel marcou o único gol tricolor no jogo",
     "imagem":"https://www.ecbahia.com/imgs/fotos/bahxint1.jpg"
 }
 ```
