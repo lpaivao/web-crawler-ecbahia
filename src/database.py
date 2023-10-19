@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import os
 from typing import Dict
 from typing import List
+import json
 
 class Database:
     
@@ -18,26 +19,24 @@ class Database:
         except Exception as e:
             print(e)
 
-    def insert_noticias_to_db(self, json_data: Dict):
+    def insert_noticias_to_db(self, noticia: Dict):
         try:
             self.connect()
             if self.client:
                 db = self.client["crawler"]
                 collection = db.get_collection("bahianews")
-                
-                # Percorre as chaves de data no JSON
-                for data, noticias in json_data.items():
-                    # Verifica se já existem notícias com a mesma data no banco de dados
-                    if not collection.find_one({'data': data}):
-                        # Se não existir, insere as notícias
-                        collection.insert_one({'data': data, 'noticias': noticias})
-                        print(f"Notícias para a data {data} inseridas no banco de dados.")
-                    else:
-                        print(f"Notícias para a data {data} já existem no banco de dados. Não foram inseridas.")
+
+                if not collection.find_one({'titulo': noticia['titulo']}):
+                    collection.insert_one(noticia)
+                    print(f"Notícia com título '{noticia['titulo']}' inserida no banco de dados.")
+                else:
+                    print(f"Notícia com título '{noticia['titulo']}' já existe no banco de dados. Não foi inserida novamente.")
+
         except Exception as e:
             print(f"Erro ao inserir notícias no banco de dados: {e}")
         finally:
             self.close()
+
 
     def close(self):
         if self.client:
@@ -56,7 +55,8 @@ class Database:
                     print(f"Nenhuma notícia encontrada no BD para a data ({date}).")
                 else:
                     print(f"Notícias encontradas no BD para a data ({date}):")
-                    print(noticias)
+                    for noticia in noticias:
+                        print(noticia['titulo'])
                 return noticias
         except Exception as e:
             print(f"Erro ao buscar notícias por data: {e}")
@@ -80,7 +80,8 @@ class Database:
                     print(f"Nenhuma notícia encontrada no BD no intervalo de datas ({date_inicio} a {date_fim}).")
                 else:
                     print(f"Notícias encontradas no BD no intervalo de datas ({date_inicio} a {date_fim}):")
-                    print(noticias)
+                    for noticia in noticias:
+                        print(noticia['titulo'])
                 
                 return noticias
         except Exception as e:
