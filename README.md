@@ -1,7 +1,6 @@
 # Crawler para notícias do time Esporte Clube Bahia
 
-Ao executar o programa, serão extraídas as notícias mais recentes do dia de três sites de notícias do time, sendo essas notícias escritas
-no banco de dados.
+Ao executar o programa, serão extraídas as notícias mais recentes do dia de três sites de notícias do time, sendo essas notícias escritas no banco de dados.
 
 ## Como funciona
 
@@ -11,60 +10,13 @@ As notícias são extraídas dos seguintes sites:
 - https://ge.globo.com/ba/futebol/times/bahia/
 - https://www.bahianoticias.com.br/esportes/bahia
 
-Após serem extraídas, as notícias são escritas no arquivo da pasta *json* do mesmo diretório que a pasta *src*, com os seguinte nome:
-- noticias.json
-
-As notícias nos arquivos JSON estão no seguinte formato:
+No banco de dados MongoDB, cada data notícia estará estruturada assim:
 
 ```console
 {
-    "12/10/2023": {
-        "ecBahia": [
-            {
-                "titulo": "Ratão celebra inicio pelo Bahia e diz ainda não estar em seu 'momento ideal'",
-                "link": "https://www.ecbahia.com/entrevista/ratao-celebra-inicio-pelo-bahia-e-diz-ainda-nao-estar-em-seu-momento-ideal"
-            }
-        ],
-        "geBahia": [
-            {
-                "titulo": "Bahia celebra Dia das Crianças com fotos da infância de Ceni e elenco",
-                "link": "https://ge.globo.com/ba/futebol/times/bahia/noticia/2023/10/12/bahia-celebra-dia-das-criancas-com-fotos-que-resgatam-infancia-de-rogerio-ceni-e-dos-atletas-confira.ghtml"
-            }
-        ],
-        "bahiaNoticias": [
-            {
-                "titulo": "Marcelo de Lima Henrique apita duelo entre Bahia e Inter na Fonte Nova",
-                "link": "https://www.bahianoticias.com.br/esportes/bahia/29594-marcelo-de-lima-henrique-apita-duelo-entre-bahia-e-inter-na-fonte-nova"
-            }
-        ]
-    }
-}
-```
-
-Já no banco de dados MongoDB, cada data registro estará assim, com nenhuma com data repetida:
-
-```console
-{
-    "data": "12/10/2023",
-    "noticias": 
-        "ecBahia": [
-            {
-                "titulo": "Ratão celebra inicio pelo Bahia e diz ainda não estar em seu 'momento ideal'",
-                "link": "https://www.ecbahia.com/entrevista/ratao-celebra-inicio-pelo-bahia-e-diz-ainda-nao-estar-em-seu-momento-ideal"
-            }
-        ],
-        "geBahia": [
-            {
-                "titulo": "Bahia celebra Dia das Crianças com fotos da infância de Ceni e elenco",
-                "link": "https://ge.globo.com/ba/futebol/times/bahia/noticia/2023/10/12/bahia-celebra-dia-das-criancas-com-fotos-que-resgatam-infancia-de-rogerio-ceni-e-dos-atletas-confira.ghtml"
-            }
-        ],
-        "bahiaNoticias": [
-            {
-                "titulo": "Marcelo de Lima Henrique apita duelo entre Bahia e Inter na Fonte Nova",
-                "link": "https://www.bahianoticias.com.br/esportes/bahia/29594-marcelo-de-lima-henrique-apita-duelo-entre-bahia-e-inter-na-fonte-nova"
-            }
-        ]
+    "data":"19/10/2023",
+    "titulo":"Bahia vence o Inter na Fonte Nova e conquista 2º triunfo seguido na Série A","link":"https://www.ecbahia.com/brasileiro/bahia-vence-o-inter-na-fonte-nova-e-conquista-2-triunfo-seguido-na-serie-a","chamada":"Biel marcou o único gol tricolor no jogo",
+    "imagem":"https://www.ecbahia.com/imgs/fotos/bahxint1.jpg"
 }
 ```
 ## Como executar
