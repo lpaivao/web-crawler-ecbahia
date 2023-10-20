@@ -26,15 +26,15 @@ No banco de dados MongoDB, cada data notícia estará estruturada assim:
 1. Baixar o repositório
 
 ```console
-git clone https://github.com/lpaivao/bot-web-crawler.git
+git clone https://github.com/lpaivao/web-crawler-ecbahia.git
 ```
-2. Instalar as dependências
-```console
-pip install -r requirements.txt
-```
-3. Entrar na pasta src
+2. Entrar na pasta src
 ```console
 cd src/
+```
+3. Instalar as dependências
+```console
+pip install -r requirements.txt
 ```
 4. Executar arquivo
 ```console
