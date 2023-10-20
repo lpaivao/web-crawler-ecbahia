@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 import os
 from typing import Dict
 from typing import List
-import json
 
 class Database:
     
@@ -23,15 +22,15 @@ class Database:
         try:
             self.connect()
             if self.client:
-                db = self.client["crawler"]
-                collection = db.get_collection("bahianews")
+                db = self.client[os.getenv("DB_DATABASE")]
+                collection = db.get_collection(os.getenv("DB_COLLECTION"))
 
                 if not collection.find_one({'titulo': noticia['titulo']}):
                     collection.insert_one(noticia)
                     print(f"Notícia com título '{noticia['titulo']}' inserida no banco de dados.")
                     return True
                 else:
-                    print(f"Notícia com título '{noticia['titulo']}' já existe no banco de dados. Não foi inserida novamente.")
+                    #print(f"Notícia com título '{noticia['titulo']}' já existe no banco de dados. Não foi inserida novamente.")
                     return False
 
         except Exception as e:
@@ -44,51 +43,3 @@ class Database:
     def close(self):
         if self.client:
             self.client.close()
-
-    # Função para buscar notícias por data
-    def find_noticias_by_data(self, date: str) -> List[Dict]:
-        try:
-            self.connect()
-            if self.client:
-                db = self.client["crawler"]
-                collection = db.get_collection("bahianews")
-                # Encontra notícias com a data especificada
-                noticias = list(collection.find({'data': date}))
-                if not noticias:
-                    print(f"Nenhuma notícia encontrada no BD para a data ({date}).")
-                else:
-                    print(f"Notícias encontradas no BD para a data ({date}):")
-                    for noticia in noticias:
-                        print(noticia['titulo'])
-                return noticias
-        except Exception as e:
-            print(f"Erro ao buscar notícias por data: {e}")
-        finally:
-            self.close()
-        return []
-
-    # Função para buscar notícias em uma faixa de datas
-    def find_noticias_in_date_range(self, date_inicio: str, date_fim: str) -> List[Dict]:
-        try:
-            self.connect()
-            if self.client:
-                db = self.client["crawler"]
-                collection = db.get_collection("bahianews")
-                # Encontra notícias com datas dentro do intervalo especificado
-                noticias = list(collection.find({
-                    'data': {'$gte': date_inicio, '$lte': date_fim}
-                }))
-                
-                if not noticias:
-                    print(f"Nenhuma notícia encontrada no BD no intervalo de datas ({date_inicio} a {date_fim}).")
-                else:
-                    print(f"Notícias encontradas no BD no intervalo de datas ({date_inicio} a {date_fim}):")
-                    for noticia in noticias:
-                        print(noticia['titulo'])
-                
-                return noticias
-        except Exception as e:
-            print(f"Erro ao buscar notícias no BD na faixa de datas: {e}")
-        finally:
-            self.close()
-        return []
