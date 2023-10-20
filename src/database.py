@@ -19,7 +19,7 @@ class Database:
         except Exception as e:
             print(e)
 
-    def insert_noticias_to_db(self, noticia: Dict):
+    def insert_noticias_to_db(self, noticia: Dict) -> True | False:
         try:
             self.connect()
             if self.client:
@@ -29,11 +29,14 @@ class Database:
                 if not collection.find_one({'titulo': noticia['titulo']}):
                     collection.insert_one(noticia)
                     print(f"Notícia com título '{noticia['titulo']}' inserida no banco de dados.")
+                    return True
                 else:
                     print(f"Notícia com título '{noticia['titulo']}' já existe no banco de dados. Não foi inserida novamente.")
+                    return False
 
         except Exception as e:
             print(f"Erro ao inserir notícias no banco de dados: {e}")
+            return False
         finally:
             self.close()
 
