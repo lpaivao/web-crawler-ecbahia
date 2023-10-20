@@ -1,0 +1,7 @@
+beautifulsoup4
+requests
+pymongo
+python-dotenv
+tweepy
+gdown
+schedule
