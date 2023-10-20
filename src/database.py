@@ -30,7 +30,7 @@ class Database:
                     print(f"Notícia com título '{noticia['titulo']}' inserida no banco de dados.")
                     return True
                 else:
-                    #print(f"Notícia com título '{noticia['titulo']}' já existe no banco de dados. Não foi inserida novamente.")
+                    print(f"Sem notícias novas...")
                     return False
 
         except Exception as e:

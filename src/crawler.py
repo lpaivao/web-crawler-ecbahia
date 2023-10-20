@@ -61,9 +61,12 @@ class Crawler:
             # Se conseguir inserir, é porque a notícia é nova, logo, é para se postar no Twitter
             if response is True:
                 self.bot.post(noticia_data)
+
+            return noticia_data
         
         except Exception as e:
             print(f"Erro na função de extrair: {e}")
+            return None
 
     def extract_first_noticia_geBahia(self):
 
@@ -96,9 +99,12 @@ class Crawler:
             # Se conseguir inserir, é porque a notícia é nova, logo, é para se postar no Twitter
             if response is True:
                 self.bot.post(noticia_data)
+
+            return noticia_data
         
         except Exception as e:
             print(f"Erro na função de extrair: {e}")
+            return None
         
 
     def extract_first_noticia_bahia_noticias(self):
@@ -140,9 +146,12 @@ class Crawler:
             # Se conseguir inserir, é porque a notícia é nova, logo, é para se postar no Twitter
             if response is True:
                 self.bot.post(noticia_data)
+
+            return noticia_data
         
         except Exception as e:
             print(f"Erro na função de extrair: {e}")
+            return None
     
     def execute(self):
         self.extract_first_noticia_ecBahia()
@@ -154,7 +163,17 @@ if __name__ == "__main__":
     crawler = Crawler()
         
     def job():
+        print(f"\n============== Procurando novas notícias ==============")
+
+        inicio = datetime.now()
         crawler.execute()
+        termino = datetime.now()
+
+        duracao = termino - inicio
+
+        print(f"============== Início: {inicio.strftime('%Y-%m-%d %H:%M:%S')} ==============")
+        print(f"============== Término: {termino.strftime('%Y-%m-%d %H:%M:%S')} ==============")
+        print(f"============== Duração: {duracao.total_seconds():.1f}s ==============")
 
     schedule.every(1).minutes.do(job)
 
