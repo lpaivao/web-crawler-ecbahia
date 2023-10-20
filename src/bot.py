@@ -49,7 +49,7 @@ class Bot:
             else:
                 self.client.create_tweet(text=post)
 
-            print("Notícia postada no Twitter com sucesso!")
+            print("Nova notícia postada!")
             return True
 
         except Exception as e:
