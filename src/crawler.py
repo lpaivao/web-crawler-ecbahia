@@ -120,7 +120,7 @@ class Crawler:
             chamada = noticia.find('div', class_='sc-c22b9e79-3 gGKeEu').find('p').text.strip()
 
             # Limita a chamada a 150 caracteres e adiciona "..." ao final, se necessário
-            chamada = chamada[:150] + ('...' if len(chamada) > 150 else '')
+            chamada = chamada[:100] + ('...(continua)' if len(chamada) > 100 else '')
 
             # Existem duas tags "src" para a imagem, precisamos pegar a segunda
             imagem = noticia.find('div', class_='imgWrapper').find_all('img')
