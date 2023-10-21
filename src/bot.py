@@ -52,6 +52,9 @@ class Bot:
             print("Nova notícia postada!")
             return True
 
+        except ConnectionAbortedError as e:
+            print(f"{e}, tentando postar novamente...")
+            self.post(noticia)
         except Exception as e:
             print(f"Erro ao tentar postar: {e}")
             return False
