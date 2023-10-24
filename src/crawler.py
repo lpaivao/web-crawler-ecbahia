@@ -52,7 +52,7 @@ class Crawler:
             imagem = noticia.find('img')['src']
 
             noticia_data = {
-                'data': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                'data': datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
                 'titulo': titulo,
                 'link': link,
                 'chamada': chamada,
@@ -94,7 +94,7 @@ class Crawler:
             imagem = noticia.find('div', class_='feed-media-wrapper').find('img')['src']
 
             noticia_data = {
-                'data': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                'data': datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
                 'titulo': titulo,
                 'link': link,
                 'chamada': chamada,
@@ -145,7 +145,7 @@ class Crawler:
             imagem = imagem[1].get('src')
 
             noticia_data = {
-                'data': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                'data': datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
                 'titulo': titulo,
                 'link': link,
                 'chamada': chamada,
@@ -183,8 +183,8 @@ if __name__ == "__main__":
 
         duracao = termino - inicio
 
-        print(f"============== Início: {inicio.strftime('%Y-%m-%d %H:%M:%S')} ==============")
-        print(f"============== Término: {termino.strftime('%Y-%m-%d %H:%M:%S')} ==============")
+        print(f"============== Início: {inicio.strftime('%d-%m-%Y %H:%M:%S')} ==============")
+        print(f"============== Término: {termino.strftime('%d-%m-%Y %H:%M:%S')} ==============")
         print(f"============== Duração: {duracao.total_seconds():.1f}s ==============")
 
     schedule.every(1).minutes.do(job)
