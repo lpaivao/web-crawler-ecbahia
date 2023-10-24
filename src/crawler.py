@@ -41,6 +41,10 @@ class Crawler:
             if not noticia:
                 print("Nenhuma notícia encontrada no site ecbahia.")
                 return None
+            
+            if noticia is None:
+                print("Erro: O objeto noticia é NoneType, não há como extrair informações")
+                return None
 
             titulo = noticia.find('h2').find('a').text.strip()
             link = noticia.find('h2').find('a')['href']
@@ -78,6 +82,10 @@ class Crawler:
 
             if not noticia:
                 print("Nenhuma notícia encontrada no site geBahia.")
+                return None
+            
+            if noticia is None:
+                print("Erro: O objeto noticia é NoneType, não há como extrair informações")
                 return None
 
             titulo = noticia.find('a').find('h2').text.strip()
@@ -119,6 +127,10 @@ class Crawler:
 
             if not noticia:
                 print("Nenhuma notícia encontrada no site geBahia.")
+                return None
+            
+            if noticia is None:
+                print("Erro: O objeto noticia é NoneType, não há como extrair informações")
                 return None
 
             titulo = noticia.find('h3', class_='sc-8a384deb-1 kVUytV').text.strip()
